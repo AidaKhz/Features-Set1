@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 2006-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Fundamental Frequency Estimation</title>
+<meta name="description" content="Fundamental Frequency Estimation">
+<meta name="keywords" content="sasp">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta name="Generator" content="LaTeX2HTML v2006-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="Fundamental_Frequency_Estimation_files/jos.css">
+
+<link rel="previous" href="https://ccrma.stanford.edu/%7Ejos/sasp/Non_Parametric_Frequency_Warping.html">
+<link rel="up" href="https://ccrma.stanford.edu/%7Ejos/sasp/Examples_Matlab_Octave.html">
+<link rel="next" href="https://ccrma.stanford.edu/%7Ejos/sasp/Test_Program_F0_Estimation.html">
+</head>
+
+<body><div id="tOoLtIp051" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">International Standard Book Number &nbsp;—&nbsp; Click for http://mathworld.wolfram.com/ISBN.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp044" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Search book contents</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp043" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Home Page</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp042" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Online Publications</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp041" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index of terms in JOS Website</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp040" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index: Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp039" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp038" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Examples in Matlab and Octave</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp037" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Non-Parametric Frequency Warping</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp036" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Test Program for F0 Estimation</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp033" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Sampling
+ is the process of converting a continuous-time signal into a 
+discrete-time signal. &nbsp;—&nbsp; Click for 
+http://www.dsprelated.com/dspbooks/mdft/Sampling_Theory.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp032" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/mdft/Spectral_Bin_Numbers.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp031" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">The <i>spectrum</i>
+ of a signal gives the distribution of signal energy as a function of 
+frequency. &nbsp;—&nbsp; Click for 
+http://www.dsprelated.com/dspbooks/mdft/Example_Applications_DFT.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp030" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">For a tone which posesses a perfectly harmonic overtone series, the nth harmonic is generally defined to oscillate at nf<sub>0</sub>Hz, where f<sub>0</sub> is the fundamental frequency. &nbsp;—&nbsp; Click for http://en.wikipedia.org/wiki/Harmonic</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp029" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Every periodic signal has a <i>fundamental frequency</i> given by the <i>inverse</i>
+ of the period.  If the period is in units of seconds, then the 
+fundamental frequency is in units of Hertz (cycles per second).  
+According to Fourier theory, every periodic signal can be expressed as a
+ sum of sinusoids at frequencies given by integer multiples of the 
+fundamental frequency.  For integers greater than 1, these frequencies 
+are called <i>harmonic frequencies</i>, and the sinusoids at harmonic frequencies are typically called <i>harmonics</i>. &nbsp;—&nbsp; Click for http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp028" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif"><i>dc</i> stands for <i>direct current<i>
+ in electrical engineering and signal processing (as opposed to 
+'alternating current').  The mean (average value) of a signal may be 
+called its dc component.  Similarly, frequency zero is called the dc 
+frequency, because a sinusoid with zero frequency is a constant signal. 
+&nbsp;—&nbsp; Click for 
+https://ccrma.stanford.edu/~jos/filters/Mathematical_Sine_Wave_Analysis.html</i></i></font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp027" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for http://scienceworld.wolfram.com/physics/HarmonicNumber.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp026" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Spectrum
+ analysis of sound is analogous to decomposing white light into its 
+component colors by means of a prism &nbsp;—&nbsp; Click for 
+https://ccrma.stanford.edu/~jos/mdft/Example_Applications_DFT.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp025" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/mdft/Decibels.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp024" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/mdft/Zero_Padding.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp023" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/mdft/Decibels.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp022" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/CCRMA/Courses/152/SPL.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp021" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">The
+ sampling rate of a discrete-time signal is defined as the number of 
+samples per second.  Its units are thus in Hertz (Hz).  Shannon's 
+Sampling Theorem states that the original continuous-time signal can be 
+recovered exactly from the samples if and only if the sampling rate is 
+higher than twice the highest frequency present in the original signal. 
+ Any higher frequencies will alias to frequencies below half the 
+sampling rate. &nbsp;—&nbsp; Click for 
+https://ccrma.stanford.edu/~jos/mdft/Sampling_Theory.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp020" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Fast
+ Fourier Transforms (FFT) are fast algorithms for computing the Discrete
+ Fourier Transform (DFT) &nbsp;—&nbsp; Click for 
+https://ccrma.stanford.edu/~jos/mdft/Fast_Fourier_Transform_FFT.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp019" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Matlab
+ is a high-level scripting language for scientific computing 
+&nbsp;—&nbsp; Click for https://ccrma.stanford.edu/~jos/matlab/</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp018" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">A
+ signal is typically a real-valued function of time. A discrete-time 
+signal is typically a real-valued function of discrete time, and is 
+therefore a time-ordered sequence of real numbers. &nbsp;—&nbsp; Click 
+for http://www.dsprelated.com/dspbooks/filters/Definition_Signal.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp017" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/sasp/Classic_Blackman.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp016" style="position: absolute; z-index: 1010; left: -300px; top: -36px; width: 300px; visibility: hidden;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/sasp/Classic_Blackman.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp013" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Every periodic signal has a <i>fundamental frequency</i> given by the <i>inverse</i>
+ of the period.  If the period is in units of seconds, then the 
+fundamental frequency is in units of Hertz (cycles per second).  
+According to Fourier theory, every periodic signal can be expressed as a
+ sum of sinusoids at frequencies given by integer multiples of the 
+fundamental frequency.  For integers greater than 1, these frequencies 
+are called <i>harmonic frequencies</i>, and the sinusoids at harmonic frequencies are typically called <i>harmonics</i>. &nbsp;—&nbsp; Click for http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp08" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Search book contents</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp07" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Home Page</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp06" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Online Publications</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp05" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index of terms in JOS Website</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp04" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index: Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp03" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp02" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Examples in Matlab and Octave</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp01" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Non-Parametric Frequency Warping</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp00" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Test Program for F0 Estimation</font></td></tr></tbody></table></td></tr></tbody></table></div>
+<!--Navigation Panel-->
+<strong>
+<a name="tex2html8457" href="https://ccrma.stanford.edu/%7Ejos/sasp/Test_Program_F0_Estimation.html" onmouseover="return escape('Test Program for F0 Estimation')">Next</a> &nbsp;|&nbsp;
+<a name="tex2html8449" href="https://ccrma.stanford.edu/%7Ejos/sasp/Non_Parametric_Frequency_Warping.html" onmouseover="return escape('Non-Parametric Frequency Warping')">Prev</a> &nbsp;|&nbsp;
+<a name="tex2html8453" href="https://ccrma.stanford.edu/%7Ejos/sasp/Examples_Matlab_Octave.html" onmouseover="return escape('Examples in Matlab and Octave')">Up</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos/sasp/sasp.html" onmouseover="return escape('Spectral Audio Signal Processing')">Top</a> 
+		&nbsp;|&nbsp;
+ <a name="tex2html8455" href="https://ccrma.stanford.edu/%7Ejos/sasp/Index_this_Document.html" onmouseover="return escape('Index: Spectral Audio Signal Processing')">Index</a> &nbsp;|&nbsp;
+<a href="https://ccrma.stanford.edu/%7Ejos/GlobalJOSIndex.html" onmouseover="return escape('Index of terms in JOS Website')">JOS Index</a> &nbsp;|&nbsp;
+ <a href="https://ccrma.stanford.edu/%7Ejos/pubs.html" onmouseover="return escape('JOS Online Publications')">JOS Pubs</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos" onmouseover="return escape('JOS Home Page')">JOS Home</a> &nbsp;|&nbsp;
+<a href="http://www.dsprelated.com/dspbooks/sasp/" onmouseover="return escape('Search book contents')">Search</a>
+</strong>
+<hr>
+
+<!--End of Navigation Panel-->
+
+<h2><a name="SECTION001960000000000000000"></a><a name="sec:f0est"></a><a name="41423"></a>
+<a name="41424"></a>
+<br>
+<a href="http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html" onmouseover="return escape('Every periodic signal has a <i>fundamental frequency</i> given by the <i>inverse</i> of the period.  If the period is in units of seconds, then the fundamental frequency is in units of Hertz (cycles per second).  According to Fourier theory, every periodic signal can be expressed as a sum of sinusoids at frequencies given by integer multiples of the fundamental frequency.  For integers greater than 1, these frequencies are called <i>harmonic frequencies</i>, and the sinusoids at harmonic frequencies are typically called <i>harmonics</i>.  —  Click for http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html')">Fundamental Frequency</a> Estimation
+</h2>
+<a name="41425"></a>
+
+<p>
+The <tt>f0est</tt> function requires <tt>findpeaks</tt> listed
+in §<a href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_listing_findpeaks_m.html#sec:findpeaks">F.2.1</a>.  It also uses a trivial
+utility <tt>freqlabs</tt> defined at the end of the listing below.
+The <tt><a href="https://ccrma.stanford.edu/%7Ejos/sasp/Classic_Blackman.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/sasp/Classic_Blackman.html')">blackman</a></tt> function (for the <a href="https://ccrma.stanford.edu/%7Ejos/sasp/Classic_Blackman.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/sasp/Classic_Blackman.html')">Blackman window</a>) comes
+standard with Octave and requires the <a href="http://www.dsprelated.com/dspbooks/filters/Definition_Signal.html" onmouseover="return escape('A signal is typically a real-valued function of time. A discrete-time signal is typically a real-valued function of discrete time, and is therefore a time-ordered sequence of real numbers.  —  Click for http://www.dsprelated.com/dspbooks/filters/Definition_Signal.html')">Signal</a> Processing Toolbox in
+<a href="https://ccrma.stanford.edu/%7Ejos/matlab/" onmouseover="return escape('Matlab is a high-level scripting language for scientific computing  —  Click for https://ccrma.stanford.edu/~jos/matlab/')">Matlab</a>.
+
+</p><p>
+</p><pre>function [f0,fc] = f0est(sig,fs,framesize,npartials,minlevel,debug);
+%F0EST  Estimate fundamental frequency F0 from spectral peaks
+%
+% [f0,fc] = f0est(sig,fs,framesize,npartials,minlevel);
+%
+% Computes fundamental frequency estimate f0 (Hz) and spectral cut-off
+% frequency fc (Hz) from spectral peaks for npartials partials in
+% signal sig.  The frame size used in the <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Fast_Fourier_Transform_FFT.html" onmouseover="return escape('Fast Fourier Transforms (FFT) are fast algorithms for computing the Discrete Fourier Transform (DFT)  —  Click for https://ccrma.stanford.edu/~jos/mdft/Fast_Fourier_Transform_FFT.html')">fft</a> is specified in
+% framesize which is rounded up to the next odd number if necessary.
+% The <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Sampling_Theory.html" onmouseover="return escape('The sampling rate of a discrete-time signal is defined as the number of samples per second.  Its units are thus in Hertz (Hz).  Shannon\'s Sampling Theorem states that the original continuous-time signal can be recovered exactly from the samples if and only if the sampling rate is higher than twice the highest frequency present in the original signal.  Any higher frequencies will alias to frequencies below half the sampling rate.  —  Click for https://ccrma.stanford.edu/~jos/mdft/Sampling_Theory.html')">sampling rate</a> is passed in fs (default = 1).  Peaks are rejected
+% minlevel <a href="https://ccrma.stanford.edu/CCRMA/Courses/152/SPL.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/CCRMA/Courses/152/SPL.html')">dB</a> below the highest peak.  fc is returned as the frequency
+% (Hz) of the highest partial.  A Blackman window is used.
+
+len = length(sig);
+
+if (nargin&lt;2),
+ fs = 1;
+end;
+
+if (nargin&lt;3),
+ framesize = 512;
+end;
+
+if (nargin&lt;5),
+ minlevel = -60; % <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Decibels.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/mdft/Decibels.html')">dB</a>
+end;
+
+if (nargin&lt;6),
+ debug = 0;
+end;
+
+if (len &lt; framesize),
+ disp(sprintf('*** f0est: signal too short  for fft (%d samples)',len));
+ framesize = len;
+end;
+
+if mod(framesize,2)==0, 
+ framesize = framesize - 1;
+ disp(sprintf('f0est: framesize -&gt; next odd number = %d',framesize));
+end;
+
+minzpadfactor = 5;  % min <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Zero_Padding.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/mdft/Zero_Padding.html')">zero-padding</a> factor (for accurate freqs)
+nfft = pwr2(framesize*minzpadfactor);
+nspec = nfft/2 + 1;
+[fkHz fxlab fylab] = freqlabs(nspec,fs);
+nzpad = nfft - framesize;
+padding = zeros(1,nzpad);
+zpadfactor = nfft/framesize;
+locscl = (fs/2) / nfft;		% Converts bin to freq
+
+if (nargin&lt;4),
+ npartials = framesize/2;	% i.e., no upper limit
+end;
+
+window = blackman(framesize)';
+
+% Parameters established.
+% Compute FFT.
+
+minpeakwidth = zpadfactor*5; % 5 for generalized Blackman family
+maxpeakwidth = minpeakwidth*2; % reject too much modulation/interf.
+
+forigin = 1;
+frame = [window .* sig(forigin:forigin+framesize-1), padding];
+if debug&gt;1, plot(frame); title(sprintf('Signal Frame')); end;
+spec = fft(frame);  
+specdb = <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Decibels.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/mdft/Decibels.html')">db</a>(spec(1:nspec));
+minval = max(specdb) + minlevel;
+if debug, plot(fkHz,specdb); 
+  title('Signal Frame <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Example_Applications_DFT.html" onmouseover="return escape('Spectrum analysis of sound is analogous to decomposing white light into its component colors by means of a prism  —  Click for https://ccrma.stanford.edu/~jos/mdft/Example_Applications_DFT.html')">Spectrum</a>'); 
+  xlabel(fxlab); ylabel(fylab); 
+end;
+
+[peakamps peaklocs peakwidths] = ...
+  findpeaks(specdb,npartials,minpeakwidth,maxpeakwidth,minval,debug);
+
+[peaklocs,sorter] = sort(peaklocs);
+amps = zeros(size(peakamps));
+widths = zeros(size(peakamps));
+npeaks = length(peaklocs);
+for col=1:npeaks, 
+	amps(:,col) = peakamps(:,sorter(col)); 
+	widths(:,col) = peakwidths(:,sorter(col)); 
+end;
+
+freqs = (peaklocs - ones(size(peaklocs))) * fs / nfft;
+if npeaks&gt;1,
+  fspacings = diff(freqs);
+  medianfspacing = median(fspacings);
+  avgfspacing = mean(fspacings);
+else
+  fspacings = freqs(1);
+  medianfspacing = freqs(1);
+  avgfspacing = freqs(1);
+end;
+  
+f0a = medianfspacing;
+<a href="http://scienceworld.wolfram.com/physics/HarmonicNumber.html" onmouseover="return escape('Click for http://scienceworld.wolfram.com/physics/HarmonicNumber.html')">harmonic_numbers</a> = round(freqs/f0a);
+
+subharms = find(harmonic_numbers &lt; 0.75);
+msh = max(subharms);
+if msh &gt; 0 % delete subharmonics, <a href="https://ccrma.stanford.edu/%7Ejos/filters/Mathematical_Sine_Wave_Analysis.html" onmouseover="return escape('<i>dc</i> stands for <i>direct current<i> in electrical engineering and signal processing (as opposed to \'alternating current\').  The mean (average value) of a signal may be called its dc component.  Similarly, frequency zero is called the dc frequency, because a sinusoid with zero frequency is a constant signal.  —  Click for https://ccrma.stanford.edu/~jos/filters/Mathematical_Sine_Wave_Analysis.html')">dc</a> peak, etc.
+  disp(sprintf(...
+    '*** Tossing out the following %d peaks below F0',msh));
+  format bank;
+  disp('	freqs	amps	widths:'); 
+  [freqs(1:msh)', amps(1:msh)', widths(1:msh)']
+  disp('*** PAUSING (RETURN to continue) ***'); 
+  pause;
+  freqs = freqs(msh+1:npeaks);
+  amps = amps(msh+1:npeaks);
+  widths = widths(msh+1:npeaks);
+  harmonic_numbers = harmonic_numbers(msh+1:npeaks);
+  npeaks = npeaks - msh;
+end
+
+if debug,
+	format bank;
+
+	disp('	freqs	amps	widths:'); [freqs', amps', widths']
+	disp('partial frequency intervals:'); fspacings
+
+	bar(freqs(1:end-1),fspacings-f0a);
+	title('Partial Frequency Spacings minus fundamental');
+	ylabel('Frequency Spacing (Hz)');
+	xlabel('Frequency (Hz)');
+        disp('PAUSING - RETURN to continue'); pause;
+
+	disp(sprintf('Median partial frequency interval = %f',medianfspacing));
+	disp(sprintf('Average partial frequency interval = %f',avgfspacing));
+	disp(sprintf('Fundamental frequency estimate = %f',f0a));
+	disp(sprintf('<a href="http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html" onmouseover="return escape('Every periodic signal has a <i>fundamental frequency</i> given by the <i>inverse</i> of the period.  If the period is in units of seconds, then the fundamental frequency is in units of Hertz (cycles per second).  According to Fourier theory, every periodic signal can be expressed as a sum of sinusoids at frequencies given by integer multiples of the fundamental frequency.  For integers greater than 1, these frequencies are called <i>harmonic frequencies</i>, and the sinusoids at harmonic frequencies are typically called <i>harmonics</i>.  —  Click for http://www.glenbrook.k12.il.us/gbssci/phys/Class/sound/u11l4d.html')">Harmonics</a> versus peaks:')); 
+		[f0a*harmonic_numbers',freqs']
+	disp(sprintf('Relative deviation:'));
+	disp(sprintf('Relative deviation (%%):'));
+	f0a_error = 100*(freqs - f0a*harmonic_numbers)./freqs
+
+	bar(freqs,f0a_error*1200);
+	title('Relative Partial Frequency Deviations (measured - <a href="http://en.wikipedia.org/wiki/Harmonic" onmouseover="return escape('For a tone which posesses a perfectly harmonic overtone series, the nth harmonic is generally defined to oscillate at nf<sub>0</sub>Hz, where f<sub>0</sub> is the fundamental frequency.  —  Click for http://en.wikipedia.org/wiki/Harmonic')">harmonic</a>)');
+	ylabel('Cents');
+	xlabel('Frequency');
+        disp('PAUSING - RETURN to continue'); pause;
+
+	disp(sprintf('Saved output format:'));
+	nfreqs = length(freqs);
+        [sprintf('partial_freqs = {%f',freqs(1)), ...
+		sprintf(', %f',freqs(2:nfreqs)),sprintf('};')]
+        [sprintf('partial_numbers = {%d',harmonic_numbers(1)),...
+		sprintf(', %d',harmonic_numbers(2:nfreqs)),sprintf('};')]
+end;
+
+%
+% Optimize fit of f0 * harmonic_numbers to measured peak frequencies.
+%
+R = harmonic_numbers * harmonic_numbers';
+P = harmonic_numbers * freqs';
+f0 = R\P;
+if debug &gt; 1,
+	disp('Refined F0 estimate via harmonic regression:'); f0
+	disp('refined harmonics versus peaks:'); [f0*harmonic_numbers',freqs']
+	disp('relative deviation (%%):'); 
+        f0_error=100*(f0*harmonic_numbers-freqs)./freqs
+	stem(f0_error); 
+	title('Relative Harmonic Deviation: Harmonic Minus Peak Over Peak');
+end;
+
+fc = max(freqs);
+
+specdbc = max(specdb,minval);
+if debug, 
+	ttl = 'Signal Frame <a href="http://www.dsprelated.com/dspbooks/mdft/Example_Applications_DFT.html" onmouseover="return escape('The <i>spectrum</i> of a signal gives the distribution of signal energy as a function of frequency.  —  Click for http://www.dsprelated.com/dspbooks/mdft/Example_Applications_DFT.html')">Spectrum</a> with F0 and Cut-Off Marked';
+        clf;
+        hold on;
+        f = fkHz * 1000;
+	plot(f,specdbc,'-k');
+        markline = [min(specdbc),max(specdbc)];
+	plot([f0 f0], markline);
+	plot([fc fc], markline);
+        title(ttl);
+        xlabel(fxlab);
+        ylabel(fylab);
+        disp('PAUSING (CUTOFFS) - RETURN to continue'); pause;
+        hold off;
+end;
+
+% ----------------------------------------------------------------
+
+function [f,fxlab,fylab] = freqlabs(nspec,fs);
+%FREQLABS returns freq axis f (kHz), x label, and y label, given 
+%         max FFT <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Spectral_Bin_Numbers.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/mdft/Spectral_Bin_Numbers.html')">bin number</a> spec and <a href="http://www.dsprelated.com/dspbooks/mdft/Sampling_Theory.html" onmouseover="return escape('Sampling is the process of converting a continuous-time signal into a discrete-time signal.  —  Click for http://www.dsprelated.com/dspbooks/mdft/Sampling_Theory.html')">sampling</a> rate fs (in Hz)
+fxlab = 'Frequency (kHz)';
+fylab = 'Amplitude (dB)';
+f = (fs/2000)*[0:nspec-1]/nspec; % frequency axis for spectral plots
+</pre> 
+<p>
+<br></p><hr>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+
+<ul>
+<li><a name="tex2html8458" href="https://ccrma.stanford.edu/%7Ejos/sasp/Test_Program_F0_Estimation.html">Test Program for F0 Estimation</a>
+</li></ul>
+<!--End of Table of Child-Links-->
+<hr>
+<!--Navigation Panel--><strong>
+<a name="tex2html8457" href="https://ccrma.stanford.edu/%7Ejos/sasp/Test_Program_F0_Estimation.html" onmouseover="return escape('Test Program for F0 Estimation')">Next</a> &nbsp;|&nbsp;
+<a name="tex2html8449" href="https://ccrma.stanford.edu/%7Ejos/sasp/Non_Parametric_Frequency_Warping.html" onmouseover="return escape('Non-Parametric Frequency Warping')">Prev</a> &nbsp;|&nbsp;
+<a name="tex2html8453" href="https://ccrma.stanford.edu/%7Ejos/sasp/Examples_Matlab_Octave.html" onmouseover="return escape('Examples in Matlab and Octave')">Up</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos/sasp/sasp.html" onmouseover="return escape('Spectral Audio Signal Processing')">Top</a> 
+		&nbsp;|&nbsp;
+ <a name="tex2html8455" href="https://ccrma.stanford.edu/%7Ejos/sasp/Index_this_Document.html" onmouseover="return escape('Index: Spectral Audio Signal Processing')">Index</a> &nbsp;|&nbsp;
+<a href="https://ccrma.stanford.edu/%7Ejos/GlobalJOSIndex.html" onmouseover="return escape('Index of terms in JOS Website')">JOS Index</a> &nbsp;|&nbsp;
+ <a href="https://ccrma.stanford.edu/%7Ejos/pubs.html" onmouseover="return escape('JOS Online Publications')">JOS Pubs</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos" onmouseover="return escape('JOS Home Page')">JOS Home</a> &nbsp;|&nbsp;
+<a href="http://www.dsprelated.com/dspbooks/sasp/" onmouseover="return escape('Search book contents')">Search</a>
+</strong>
+<!--End of Navigation Panel-->
+<address>
+<hr><a href="https://ccrma.stanford.edu/%7Ejos/sasp/sasp-citation.html">[How to cite this work]</a>&nbsp;&nbsp;<a href="https://ccrma.stanford.edu/%7Ejos/sasp/sasp-hardcopy.html">[Order a printed hardcopy]</a>&nbsp;&nbsp;<a href="http://www.w3k.org/cgi-bin/register.cgi?email_jos">[Comment on this page via email]</a><br><hr><h5>``<a href="http://ccrma.stanford.edu/%7Ejos/sasp/">Spectral Audio Signal Processing</a>'',
+ by <a href="http://ccrma.stanford.edu/%7Ejos/"> Julius O. Smith III</a>,
+ <a href="http://www.w3k.org/books/">W3K Publishing</a>, 2011, <a href="http://mathworld.wolfram.com/ISBN.html" onmouseover="return escape('International Standard Book Number  —  Click for http://mathworld.wolfram.com/ISBN.html')">ISBN</a> 978-0-9745607-3-1.<br>
+Copyright © <i>2012-01-15</i> by <a href="http://ccrma.stanford.edu/%7Ejos/"> Julius O. Smith III</a><br>
+<a href="http://ccrma.stanford.edu/">
+	Center for Computer Research in Music and Acoustics (CCRMA),</a>
+&nbsp;
+<a href="http://www.stanford.edu/"> Stanford University</a><br>
+<a href="http://ccrma.stanford.edu/">
+	<img src="Fundamental_Frequency_Estimation_files/CCRMALogoSmall.gif" alt="CCRMA" align="MIDDLE"></a>
+</h5>
+
+<script language="JavaScript" type="text/javascript" src="Fundamental_Frequency_Estimation_files/wz_tooltip.js"></script>
+</address>
+
+
+</body></html>

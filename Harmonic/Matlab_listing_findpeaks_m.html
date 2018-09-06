@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 2006-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Matlab listing: findpeaks.m</title>
+<meta name="description" content="Matlab listing: findpeaks.m">
+<meta name="keywords" content="sasp">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta name="Generator" content="LaTeX2HTML v2006-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="Matlab_listing_findpeaks_m_files/jos.css">
+
+<link rel="next" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_listing_maxr_m.html">
+<link rel="previous" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html">
+<link rel="up" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html">
+<link rel="next" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_listing_maxr_m.html">
+</head>
+
+<body><div id="tOoLtIp032" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">International Standard Book Number &nbsp;—&nbsp; Click for http://mathworld.wolfram.com/ISBN.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp025" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Search book contents</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp024" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Home Page</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp023" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Online Publications</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp022" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index of terms in JOS Website</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp021" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index: Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp020" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp019" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Interpolating Spectral Peaks</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp018" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Interpolating Spectral Peaks</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp017" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Matlab listing: maxr.m</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp016" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/mdft/Dynamic_Range.html</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp015" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Click for https://ccrma.stanford.edu/~jos/parshl/Peak_Detection_Steps_3.html#sec:peakdet</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp013" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Matlab
+ is a high-level scripting language for scientific computing 
+&nbsp;—&nbsp; Click for https://ccrma.stanford.edu/~jos/matlab/</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp08" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Search book contents</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp07" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Home Page</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp06" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">JOS Online Publications</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp05" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index of terms in JOS Website</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp04" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Index: Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp03" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Spectral Audio Signal Processing</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp02" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Interpolating Spectral Peaks</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp01" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Interpolating Spectral Peaks</font></td></tr></tbody></table></td></tr></tbody></table></div><div id="tOoLtIp00" style="position:absolute;z-index:1010;left:0px;top:0px;width:300px;visibility:hidden;-moz-opacity:1;"><table style="background:#000040;" bgcolor="#000040" border="0" cellpadding="0" cellspacing="0" width="300"><tbody><tr><td><table border="0" cellpadding="3" cellspacing="1" width="100%"><tbody><tr><td style="text-align:left;padding:3px;" align="left" bgcolor="#f0f0ff"><font style="color:#000066;font-family:arial,helvetica,sans-serif;font-size:11px;font-weight:normal;" color="#000066" face="arial,helvetica,sans-serif">Matlab listing: maxr.m</font></td></tr></tbody></table></td></tr></tbody></table></div>
+<!--Navigation Panel-->
+<strong>
+<a name="tex2html8317" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_listing_maxr_m.html" onmouseover="return escape('Matlab listing: maxr.m')">Next</a> &nbsp;|&nbsp;
+<a name="tex2html8307" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html" onmouseover="return escape('Interpolating Spectral Peaks')">Prev</a> &nbsp;|&nbsp;
+<a name="tex2html8313" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html" onmouseover="return escape('Interpolating Spectral Peaks')">Up</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos/sasp/sasp.html" onmouseover="return escape('Spectral Audio Signal Processing')">Top</a> 
+		&nbsp;|&nbsp;
+ <a name="tex2html8315" href="https://ccrma.stanford.edu/%7Ejos/sasp/Index_this_Document.html" onmouseover="return escape('Index: Spectral Audio Signal Processing')">Index</a> &nbsp;|&nbsp;
+<a href="https://ccrma.stanford.edu/%7Ejos/GlobalJOSIndex.html" onmouseover="return escape('Index of terms in JOS Website')">JOS Index</a> &nbsp;|&nbsp;
+ <a href="https://ccrma.stanford.edu/%7Ejos/pubs.html" onmouseover="return escape('JOS Online Publications')">JOS Pubs</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos" onmouseover="return escape('JOS Home Page')">JOS Home</a> &nbsp;|&nbsp;
+<a href="http://www.dsprelated.com/dspbooks/sasp/" onmouseover="return escape('Search book contents')">Search</a>
+</strong>
+<hr>
+
+<!--End of Navigation Panel-->
+
+<h3><a name="SECTION001921000000000000000"></a><a name="sec:findpeaks"></a><a name="41118"></a>
+<a name="41120"></a>
+<br>
+<a href="https://ccrma.stanford.edu/%7Ejos/matlab/" onmouseover="return escape('Matlab is a high-level scripting language for scientific computing  —  Click for https://ccrma.stanford.edu/~jos/matlab/')">Matlab</a> listing: <tt>findpeaks.m</tt>
+</h3>
+<a name="41121"></a>
+
+<p>
+</p><pre>function [peakamps,peaklocs,peakwidths,resid] = ...
+  findpeaks(data,npeaks,minwidth,maxwidth,minpeak,debug);
+%FINDPEAKS Find up to npeaks interpolated peaks in data.
+%
+%  [peakamps,peaklocs,peakwidths,resid] = 
+%     findpeaks(data,npeaks,minwidth,maxwidth,minpeak,debug);
+%
+%       finds up to npeaks interpolated peaks in real data.
+%       A peak is rejected if its width is 
+%         less than minwidth samples wide(default=1), or
+%         less than minpeak in magnitude (default=min(data)).
+%       <a href="https://ccrma.stanford.edu/%7Ejos/parshl/Peak_Detection_Steps_3.html#sec:peakdet" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/parshl/Peak_Detection_Steps_3.html#sec:peakdet')">Quadratic interpolation</a> is used for peak interpolation.
+%       Left-over data with peaks removed is returned in resid.
+%       Peaks are returned in order of decreasing amplitude.
+%         They can be sorted in order of location as follows:
+%           [peaklocs,sorter] = sort(peaklocs);
+%           amps = zeros(size(peakamps));
+%           npeaks = length(peaklocs);
+%           for col=1:npeaks, 
+%             amps(:,col) = peakamps(:,sorter(col)); 
+%           end;
+%         They can be sorted in order of width as follows:
+%           [peakwidths,sorter] = sort(peakwidths);
+%           peakamps = peakamps(sorter);
+%           peaklocs = peaklocs(sorter);
+
+len = length(data);
+
+if nargin&lt;6,
+  debug = 0;
+end;
+
+if nargin&lt;5,
+ minpeak = min(data);
+end;
+
+if nargin&lt;4,
+ maxwidth = 0;
+end;
+
+if nargin&lt;3,
+ minwidth = 1;
+end;
+
+if nargin&lt;2,
+ npeaks = len;
+end;
+
+peakamps = zeros(1,npeaks);
+peaklocs = zeros(1,npeaks);
+peakwidths = zeros(1,npeaks);
+if debug, peaksarr = 1.1*max(data)*ones(size(data)); end;
+if debug, orgdata = data; end;
+if debug, npeaks, end
+
+nrej = 0;
+pdebug=debug;
+ipeak=0; 
+while ipeak&lt;npeaks
+ [ploc, pamp, pcurv] = maxr(data);
+ if (pamp==minpeak), warning('findpeaks:min amp reached'); 
+        break; 
+ end
+ plocq = round(ploc);
+ ulim = min(len,plocq+1);
+ camp = pamp;
+ %
+ % Follow peak down to determine its width
+ %
+ drange = max(data) - minpeak; % data <a href="https://ccrma.stanford.edu/%7Ejos/mdft/Dynamic_Range.html" onmouseover="return escape('Click for https://ccrma.stanford.edu/~jos/mdft/Dynamic_Range.html')">dynamic range</a>
+ tol = drange * 0.01;
+ dmin = camp;
+ while ((ulim&lt;len) &amp; (data(ulim)&lt;=dmin+tol)),
+   camp = data(ulim);
+   ulim = ulim + 1;
+   if (camp&lt;dmin), dmin=camp; end
+ end;
+ ulim = ulim - 1;
+ lamp = camp;
+
+ llim = max(1,plocq-1);
+ camp = pamp;
+ dmin = camp;
+ while ((llim&gt;1) &amp; (data(llim)&lt;=dmin+tol)),
+   camp = data(llim);
+   llim = llim - 1;
+   if (camp&lt;dmin), dmin=camp; end
+ end;
+ llim = llim + 1;
+ uamp = camp;
+ %
+ % Remove the peak
+ %
+ data(llim:ulim) = min(lamp,uamp) * ones(1,ulim-llim+1);
+ %
+ % Reject peaks which are too narrow (indicated by zero loc and amp)
+ %
+ pwid = ulim - llim + 1; 
+ if ~(pwid &lt; minwidth),
+   ipeak = ipeak + 1;
+   peaklocs(ipeak) = ploc;
+   peakamps(ipeak) = pamp;
+   peakwidths(ipeak) = - 1/pcurv;
+   nrej = 0;
+   if pdebug&gt;1
+      peaksarr(plocq) = pamp;
+      maxloc = min(len,2*round(max(peaklocs)));
+      ttl = sprintf(...
+        'Peak %d = %0.2f at %0.2f, width %d',ipeak,pamp,ploc,pwid);
+      if x == -1
+        pdebug = 0;
+      end
+   end
+ else
+   nrej = nrej + 1;
+   if (nrej &gt;= 10),
+     warning('*** findpeaks: giving up (10 rejected peaks in a row)');
+     break;
+   end;
+ end;
+end;  
+if (ipeak&lt;npeaks),
+ warning(sprintf(...
+   '*** peaks.m: only %d peaks found instead of %d',ipeak,npeaks));
+ peakamps = peakamps(1:ipeak);
+ peaklocs = peaklocs(1:ipeak);
+ peakwidths = peakwidths(1:ipeak);
+end;
+resid = data;
+</pre>
+
+<p>
+
+</p><p>
+</p><hr>
+<!--Navigation Panel--><strong>
+<a name="tex2html8317" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_listing_maxr_m.html" onmouseover="return escape('Matlab listing: maxr.m')">Next</a> &nbsp;|&nbsp;
+<a name="tex2html8307" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html" onmouseover="return escape('Interpolating Spectral Peaks')">Prev</a> &nbsp;|&nbsp;
+<a name="tex2html8313" href="https://ccrma.stanford.edu/%7Ejos/sasp/Matlab_Finding_Interpolated_Spectral.html" onmouseover="return escape('Interpolating Spectral Peaks')">Up</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos/sasp/sasp.html" onmouseover="return escape('Spectral Audio Signal Processing')">Top</a> 
+		&nbsp;|&nbsp;
+ <a name="tex2html8315" href="https://ccrma.stanford.edu/%7Ejos/sasp/Index_this_Document.html" onmouseover="return escape('Index: Spectral Audio Signal Processing')">Index</a> &nbsp;|&nbsp;
+<a href="https://ccrma.stanford.edu/%7Ejos/GlobalJOSIndex.html" onmouseover="return escape('Index of terms in JOS Website')">JOS Index</a> &nbsp;|&nbsp;
+ <a href="https://ccrma.stanford.edu/%7Ejos/pubs.html" onmouseover="return escape('JOS Online Publications')">JOS Pubs</a> &nbsp;|&nbsp;
+<a href="http://ccrma.stanford.edu/%7Ejos" onmouseover="return escape('JOS Home Page')">JOS Home</a> &nbsp;|&nbsp;
+<a href="http://www.dsprelated.com/dspbooks/sasp/" onmouseover="return escape('Search book contents')">Search</a>
+</strong>
+<!--End of Navigation Panel-->
+<address>
+<hr><a href="https://ccrma.stanford.edu/%7Ejos/sasp/sasp-citation.html">[How to cite this work]</a>&nbsp;&nbsp;<a href="https://ccrma.stanford.edu/%7Ejos/sasp/sasp-hardcopy.html">[Order a printed hardcopy]</a>&nbsp;&nbsp;<a href="http://www.w3k.org/cgi-bin/register.cgi?email_jos">[Comment on this page via email]</a><br><hr><h5>``<a href="http://ccrma.stanford.edu/%7Ejos/sasp/">Spectral Audio Signal Processing</a>'',
+ by <a href="http://ccrma.stanford.edu/%7Ejos/"> Julius O. Smith III</a>,
+ <a href="http://www.w3k.org/books/">W3K Publishing</a>, 2011, <a href="http://mathworld.wolfram.com/ISBN.html" onmouseover="return escape('International Standard Book Number  —  Click for http://mathworld.wolfram.com/ISBN.html')">ISBN</a> 978-0-9745607-3-1.<br>
+Copyright © <i>2012-01-15</i> by <a href="http://ccrma.stanford.edu/%7Ejos/"> Julius O. Smith III</a><br>
+<a href="http://ccrma.stanford.edu/">
+	Center for Computer Research in Music and Acoustics (CCRMA),</a>
+&nbsp;
+<a href="http://www.stanford.edu/"> Stanford University</a><br>
+<a href="http://ccrma.stanford.edu/">
+	<img src="Matlab_listing_findpeaks_m_files/CCRMALogoSmall.gif" alt="CCRMA" align="MIDDLE"></a>
+</h5>
+
+<script language="JavaScript" type="text/javascript" src="Matlab_listing_findpeaks_m_files/wz_tooltip.js"></script>
+</address>
+
+
+</body></html>
