@@ -1,9 +1,7 @@
 function fileNamesFeatureExtraction( mainDirectory,fileName)
 % This function is written instead of GUI_feature_matrices function
-%  mainDirectory like this: 'E:\Thesis\Ebrahimi\Thesis Data\Data\
-% Sound Description Toolbox\voice_for_featuring';
 % mainDirectory is the address of voice files of one subject
-% fileName is the name of excel file we want to put features in it (the
+% fileName is the name of a text file we want to put features in it (the
 % name of person or any name for the features of one subject
 
 mainFolderInfo = dir(mainDirectory);
@@ -17,9 +15,7 @@ if ( sizeofMain(1) >= 3)
     end
 end
 sizeofFileNames = size(folderNames);
-a = zeros(1,318);
 featureMatrix = [];
-featureMatrix = [featureMatrix; a];
 for i = 1 : sizeofFileNames(1)
     %[fileName,diffAVG ] = ilpcFilterFeature( folderNames(i) );
     display(folderNames(i));

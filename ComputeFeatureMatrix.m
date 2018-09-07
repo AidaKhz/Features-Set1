@@ -3,9 +3,9 @@ function featureSelectedMatrix = ComputeFeatureMatrix( directory, filename)
 % Initialize
 startup;
 format('long');
-%warning('off'); % removed by Aida
-%by Aida waveread changed to audio read in matlab 2015and then raedwav in
-%voicebox toolbox
+% warning('off'); % removed by Aida
+% waveread changed to audio read in matlab 2015 and then raedwav in voicebox
+% toolbox
 % As file name is stored in cell type of data I used filename{1} istead of
 % filename 
 
@@ -13,7 +13,7 @@ format('long');
 filename = strcat(directory, filename{1});
 [A,B] = readwav(filename);% [y,Fs: samplerate,bits in sample] 
 
-sampleNum = 882;
+sampleNum = 882; % 20 ml second 
 % frameNum = floor(size(A)/sampleNum);
 
 %% changed by Aida
@@ -24,7 +24,7 @@ sampleNum = 882;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % AE
-    AudioPower = AP(A,size(A),B, sampleNum); % chanded by Aida
+    AudioPower = AP(A,size(A),B, sampleNum); % changed by Aida
     %meanAE = mean(AudioPower);% chanded by Aida
     covAE = cov(AudioPower);% chanded by Aida
     %meanDiffAE = mean(diff(AudioPower));% chanded by Aida
